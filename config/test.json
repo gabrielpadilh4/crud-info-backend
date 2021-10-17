@@ -1,1 +1,1 @@
-{ "DBHost": "YOUR_DB_URI" }
+{ "DBHost": "mongodb://root:pass12345@localhost:27017" }
