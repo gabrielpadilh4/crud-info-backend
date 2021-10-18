@@ -140,4 +140,25 @@ describe('Vehicles', () => {
             });
         });
     });
+
+
+  /*
+  * Test the /DELETE/:id route
+  */
+  describe('/DELETE/:id vehicle', () => {
+    it('it should DELETE a vehicle given the id', (done) => {
+        let vehicle = new Vehicle({ plate: "SHOULDWORK-123", chassis: "TESTE123", renavam: "ASDAD123123", model: "Uno Mile", brand: "Fiat", year: "2005" });
+        vehicle.save((err, book) => {
+              chai.request(server)
+              .delete('/api/vehicle/' + vehicle.id)
+              .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('message').eql('Vehicle successfully deleted!');
+                    res.body.result.should.have.property('deletedCount').eql(1);
+                done();
+              });
+        });
+    });
+});
 });
